@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase-config/index";
 import { useDispatch, useSelector } from "react-redux";
-import { set_user_auth } from "../store/slices/user_data_slice";
+import { set_user_auth } from "../store/slices/user_auth_slice";
+
 
 const Login = () => {
   const [data, setData] = useState({});
@@ -33,7 +34,7 @@ const Login = () => {
         data.password
       );
       dispatch(set_user_auth(true));
-      navigate("/Products");
+      navigate("/donor");
       console.log(userCredential.user);
     } catch (error) {
       const errorMessage = error.message;
@@ -44,8 +45,8 @@ const Login = () => {
   };
   return (
 
-    <div>
-      <h1>WELCOME TO PRODUCTS STORE</h1>
+    <div className="container mx-auto p-4 text-center">
+      <h1 className="text-2xl font-bold  mb-4">Welcome To Blood Donation App</h1>
     <div className="bg-bg_color h-[100dvh] grid place-items-center px-3">
       <form
         onSubmit={submit_handle}
@@ -74,7 +75,7 @@ const Login = () => {
         </div>
 
         <div >
-          <button type="submit">Login</button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 text-center" type="submit">Login</button>
         </div>
 
         <div className="col-span-2 space-x-1 text-center">
